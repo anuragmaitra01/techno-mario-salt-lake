@@ -1,11 +1,10 @@
-
 kaboom({
   global: true,
   fullscreen: true,
   scale: 2,
   debug: true,
   clearColor: [4, 156, 216],
-})
+});
 
 const MOVE_SPEED = 120
 const JUMP_FORCE = 400
@@ -15,12 +14,17 @@ const ENEMY_SPEED = 20
 
 let isJumping = true
 
+
+loadSprite('mario', 'https://i.ibb.co/cDXP5SN/mario.png');
+loadSprite('mario2', 'https://i.ibb.co/cDXP5SN/mario.png');
+loadSprite('mario3', 'https://i.ibb.co/cDXP5SN/mario.png');
+
 loadSprite('coin', 'https://i.ibb.co/dgP4nLk/cake.png')
 loadSprite('sky', 'https://i.ibb.co/ZLB1GNM/images.jpg');
 loadSprite('evil-shroom', 'https://i.ibb.co/9n7CSB6/choco-cake.png')
 loadSprite('brick', 'https://i.imgur.com/pogC9x5.png')
 loadSprite('block', 'https://i.imgur.com/M6rwarW.png')
-loadSprite('mario', 'https://i.ibb.co/cDXP5SN/mario.png')
+
 loadSprite('mushroom', 'https://i.ibb.co/DfcJDRC/shroom.png')
 loadSprite('surprise', 'https://i.imgur.com/gesQ1KP.png')
 loadSprite('unboxed', 'https://i.imgur.com/bdrLpi6.png')
@@ -35,7 +39,60 @@ loadSprite('blue-steel', 'https://i.imgur.com/gqVoI2b.png')
 loadSprite('blue-evil-shroom', 'https://i.ibb.co/9n7CSB6/choco-cake.png')
 loadSprite('blue-surprise', 'https://i.imgur.com/RMqCc1G.png')
 
-scene("game", ({ level, score }) => {
+
+scene('characterSelect', () => {
+  const marioOptions = ['mario', 'mario2', 'mario3'];
+  let selectedIndex = 0;
+
+  const sprites = marioOptions.map((mario, i) => {
+    return add([sprite(mario), pos(width() / 2 - 50 + i * 50, height() / 2), origin('center')]);
+  });
+
+  function updateSprites() {
+    sprites.forEach((s, i) => {
+      if (i === selectedIndex) {
+        s.color = rgba(1, 1, 1, 1);
+      } else {
+        s.color = rgba(0.5, 0.5, 0.5, 1);
+      }
+    });
+  }
+
+  function resetSprites() {
+    sprites.forEach((s) => {
+      destroy(s);
+    });
+  }
+
+  updateSprites();
+
+  add([
+    text('Press left or right arrow to select a character', 8),
+    origin('center'),
+    pos(width() / 2, height() / 2 + 40)
+  ]);
+  add([
+    text('Press Enter to start the game', 8),
+    origin('center'),
+    pos(width() / 2, height() / 2 + 55)
+  ]);
+  keyPress('left', () => {
+    selectedIndex = (selectedIndex - 1 + marioOptions.length) % marioOptions.length;
+    updateSprites();
+  });
+
+  keyPress('right', () => {
+    selectedIndex = (selectedIndex + 1) % marioOptions.length;
+    updateSprites();
+  });
+
+  keyPress('enter', () => {
+    go('game', { level: 0, score: 0, selectedMario: marioOptions[selectedIndex] });
+  });
+});
+
+
+scene("game", ({ level, score, selectedMario }) => {
   layers(['bg', 'obj', 'ui'], 'obj')
   add([
     sprite('sky'),
@@ -134,14 +191,13 @@ scene("game", ({ level, score }) => {
       }
     }
   }
-
   const player = add([
-    sprite('mario'), solid(),
+    sprite(selectedMario), solid(),
     pos(30, 0),
     body(),
     big(),
     origin('botleft')
-  ])
+  ]);
 
   action('mushroom', (m) => {
     m.move(20, 0)
@@ -239,7 +295,7 @@ scene('lose', ({ score }) => {
   add([text('Press R to restart', 16), origin('center'), pos(width() / 2, height() / 2 + 40)]);
 
   function restart() {
-    go('game', { level: 0, score: 0 });
+    go('characterSelect');
   }
 
   keyPress('r', () => {
@@ -247,4 +303,5 @@ scene('lose', ({ score }) => {
   });
 });
 
-start("game", { level: 0, score: 0 })
+
+start("characterSelect");
