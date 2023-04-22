@@ -14,14 +14,13 @@ const ENEMY_SPEED = 20
 
 let isJumping = true
 
-
 loadSprite('mario', 'https://i.ibb.co/cDXP5SN/mario.png');
 loadSprite('mario2', 'https://i.ibb.co/n7z6p7Q/New-Piskel-1.png');
 loadSprite('mario3', 'https://i.ibb.co/YN9ZtS0/New-Piskel.png');
 
-loadSprite('coin', 'https://i.ibb.co/dgP4nLk/cake.png')
+loadSprite('coin', 'https://i.ibb.co/N6QvzhB/marksheet.png')
 loadSprite('sky', 'https://i.ibb.co/ZLB1GNM/images.jpg');
-loadSprite('evil-shroom', 'https://i.ibb.co/9n7CSB6/choco-cake.png')
+loadSprite('evil-shroom', 'https://i.ibb.co/dBtZkyF/corona-virus-sprite.png')
 loadSprite('brick', 'https://i.imgur.com/pogC9x5.png')
 loadSprite('block', 'https://i.imgur.com/M6rwarW.png')
 
@@ -36,7 +35,7 @@ loadSprite('pipe-bottom-right', 'https://i.imgur.com/nqQ79eI.png')
 loadSprite('blue-block', 'https://i.imgur.com/fVscIbn.png')
 loadSprite('blue-brick', 'https://i.imgur.com/3e5YRQd.png')
 loadSprite('blue-steel', 'https://i.imgur.com/gqVoI2b.png')
-loadSprite('blue-evil-shroom', 'https://i.ibb.co/9n7CSB6/choco-cake.png')
+loadSprite('blue-evil-shroom', 'https://i.ibb.co/DtcRdfx/mobile-sprite.png')
 loadSprite('blue-surprise', 'https://i.imgur.com/RMqCc1G.png')
 
 scene('startScreen', () => {
