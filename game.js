@@ -8,9 +8,9 @@ kaboom({
 
 const MOVE_SPEED = 120
 const JUMP_FORCE = 400
-const BIG_JUMP_FORCE = 550
+const BIG_JUMP_FORCE = 450
 let CURRENT_JUMP_FORCE = JUMP_FORCE
-const ENEMY_SPEED = 20
+const ENEMY_SPEED = -20
 
 let isJumping = true
 
@@ -42,7 +42,7 @@ scene('startScreen', () => {
   add([
     text('Welcome to "Super Student Bros: The Corona Years"', 13),
     origin('center'),
-    pos(width()/2, height()/2 -140),
+    pos(width() / 2, height() / 2 - 140),
     color(1, 0, 0)
   ]);
 
@@ -66,18 +66,17 @@ scene('startScreen', () => {
     'of a Techno Main Salt Lake student like never before.',
     'Remember, the key to success in this game is to be as sarcastic and funny as possible,',
     'just like your favorite memes that keep you going through those boring lectures.',
-    'Let the fun begin!',
-    'CONTRIBUTIONS: Anurag Maitra - Game Engine, Namrata Sanyal - Frontend, Nilesh Sengupta - Game Engine'
-    ];
-    
-    textLines.forEach((line, index) => {
+    'Let the fun begin!'
+  ];
+
+  textLines.forEach((line, index) => {
     add([
-    text(line, 6),
-    origin('center'),
-    pos(width() / 2, height() / 2 - 100+ (index * 10)),
-    color(0.678, 0.847, 0.902)
+      text(line, 6),
+      origin('center'),
+      pos(width() / 2, height() / 2 - 100 + (index * 10)),
+      color(0.678, 0.847, 0.902)
     ]);
-    });
+  });
 
   add([
     text('Press Enter to select a character', 16),
@@ -90,8 +89,6 @@ scene('startScreen', () => {
     go('characterSelect');
   });
 });
-
-
 
 scene('characterSelect', () => {
   const marioOptions = ['mario', 'mario2', 'mario3'];
@@ -156,40 +153,34 @@ scene("game", ({ level, score, selectedMario }) => {
 
   const maps = [
     [
-      '=                                                                                                                                                                                                    ',
-      '=                                                                                                                                                                                                    ',
-      '=                                                                                                                                                                                                    ',
-      '=                                                                                                                                                                                                    ',
-      '=                                                                                                                                                                                                    ',
-      '=                                                                                                                                                                                                    ',
-      '=           %                                                         ^ ^                                                                                                        ==                  ',
-      '=                                                                     ========   ==%              *           ===    =%%=                                                       ===                  ',
-      '=                                                                                                                                                                              ====                  ',
-      '=                                                                                                                                                                             =====                  ',
-      '=     %   =*=%=                     -+         -+                  =*=             =     ==    %  %  %     =          ==      =  =          ==  =            ==%=            ======                  ',
-      '=                           -+      ()         ()                                                                            ==  ==        ===  ==                          =======                  ',
-      '=                 -+        ()      ()         ()                                                                           ===  ===      ====  ===     -+              -+ ========     <>           ',
-      '=                ^()        ()^     ()   ^ ^   ()                                    ^ ^        ^     ^ ^       ^ ^  ^ ^   ====  ====    =====  ====    ()              ()=========     ()           ',
-      '===========================================================  ===============   ===============================================================  ===================================     ==           ',
+      '_                                                                                                                                                                                                     ',
+      '_                                                                                                                                                                                                     ',
+      '_                                                                                                                                                                                                     ',
+      '_                                                                                                                                                                                                     ',
+      '_                                                                                                                                                                                                     ',
+      '_                                                                                                                                                                                                     ',
+      '_           %                                                         ^ ^                                                                                                         __                  ',
+      '_                                                                     =======    ==%              *           ===    =%%=                                                        ___                  ',
+      '_                                                                                                                                                                               ____                  ',
+      '_                                                                                                                                                                              _____                  ',
+      '_     %   =*=%=                     -+         -+                  =*=             =     ==    %  %  %     =          ==      _  _          __   _            ==%=            ______                  ',
+      '_                           -+      ()         ()                                                                            __  __        ___   __                          _______                  ',
+      '_                 -+        ()      ()         ()                                                                           ___  ___      ____   ___     -+              -+ ________      <>          ',
+      '_                ^()        ()^     ()   ^ ^   ()                                    ^ ^        ^     ^ ^       ^ ^  ^ ^   ____  ____    _____   ____    ()              ()_________      ()          ',
+      '__________________________________________________________   ______________    _______________________________________________________________   ___________________________________      __          ',
+      '000000000000000000000000000000000000000000000000000000000_   _000000000000_    _0000000000000000000000000000000000000000000000000000000000000_   _000000000000000000000000000000000_      __          ',
     ],
     [
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
-      '!                                                                                                                                                                                        ~',
       '!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                         ~~~~~~~',
       '!                                                                   ~~  ~~~~~~  ~~~~       ~~~~                                                                                          ~',
       '!                                                                   ~~  ~~~~~~  ~~~~                                                                                                     ~',
       '!                                                     $$$$        ~~        ~~   ~     ~~         $$$$$$                                                                   xxx           ~',
       '!                                                                 ~~        ~~   ~     ~~         ~~~~~~                                                     xxx                         ~',
-      '!                                                  ~  ~~~~  &     ~~    $$$$~~   ~$ &  ~@         ~~~~~~                                                                                 ~',
-      '!         &@@@@         x  x           @           ~ $~  ~ $~     ~~~~  ~~~~~~   ~~~~  ~~  ~~~~                            -+                           xx         ~~~~@                 ~',
+      '!                                                  ~  ~~~~  &     ~~    $$$$~~   ~$ &  ~@         ~~~~~~                                                                               <>~',
+      '!         &@@@@         x  x           @           ~ $~  ~ $~     ~~~~  ~~~~~~   ~~~~  ~~  ~~~~                            -+                           xx         ~~~~@               ()~',
       '!                       x  x  x     x     x        ~~~~  ~~~~       ~~                                               -+    ()           ~~             xxx                       ~~~~~~~~~',
-      '!-+                     x  x  x  x  x     x  x                                                                       ()    ()    -+     ~~            xxxx                       ~~~~~~<>~',
-      '!()                z x  x  x  x  x  x  z  x  x           z z             z  z z                                 z z z()    ()  z ()     ~~          zxxxxx          z            ~~~~~~()~',
+      '!-+                     x  x  x  x  x     x  x                                                                       ()    ()    -+     ~~            xxxx                       ~~~~~~~~~',
+      '!()                z x  x  x  x  x  x  z  x  x           z z             z  z z                                 z z z()    ()  z ()     ~~          zxxxxx          z            ~~~~~~~~~',
       '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!   !!!!!!!!!!!!!   xxx   !!!!!   xxx   !!!!!!!!!',
       '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!   !!!!!!!!!!!!!         !!!!!         !!!!!!!!!',
     ],
@@ -198,24 +189,29 @@ scene("game", ({ level, score, selectedMario }) => {
   const levelCfg = {
     width: 20,
     height: 20,
-    '=': [sprite('block'), 'brick', solid()],
-    '$': [sprite('coin'), 'coin'],
+    '_': [sprite('block'), solid()],
+    '=': [sprite('brick'), 'brick', solid()],
+    '0': [sprite('block')],
+    '$': [sprite('coin'), 'coin', scale(0.5)],
     '%': [sprite('surprise'), solid(), 'coin-surprise'],
     '*': [sprite('surprise'), solid(), 'mushroom-surprise'],
     '}': [sprite('unboxed'), solid()],
-    '(': [sprite('pipe-bottom-left'), solid(), scale(0.5)],
-    ')': [sprite('pipe-bottom-right'), solid(), scale(0.5)],
+    '(': [sprite('pipe-bottom-left'), 'pipe', solid(), scale(0.5)],
+    ')': [sprite('pipe-bottom-right'), 'pipe', solid(), scale(0.5)],
     '-': [sprite('pipe-top-left'), 'pipe', solid(), scale(0.5)],
     '+': [sprite('pipe-top-right'), 'pipe', solid(), scale(0.5)],
-    '^': [sprite('evil-shroom'), 'enemy', solid(), body()],
+    '^': [sprite('evil-shroom'), 'enemy', solid(), body(), { speed: ENEMY_SPEED },],
     '#': [sprite('mushroom'), solid(), 'mushroom', body()],
-    '!': [sprite('blue-block'), solid(), scale(0.5)],
-    '£': [sprite('blue-brick'), 'brick', solid(), scale(0.5)],
-    'z': [sprite('blue-evil-shroom'), solid(), scale(0.5), 'enemy'],
-    '@': [sprite('blue-surprise'), solid(), scale(0.5), 'coin-surprise'],
-    'x': [sprite('blue-steel'), solid(), scale(0.5)],
     '<': [sprite('pipe-top-left'), solid(), scale(0.5), 'exit-pipe'],
     '>': [sprite('pipe-top-right'), solid(), scale(0.5), 'exit-pipe'],
+
+    '!': [sprite('blue-block'), solid(), scale(0.5)],
+    '~': [sprite('blue-brick'), 'brick', solid(), scale(0.5)],
+    'z': [sprite('blue-evil-shroom'), 'enemy', solid(), body(), { speed: ENEMY_SPEED },],
+    '@': [sprite('blue-surprise'), solid(), scale(0.5), 'coin-surprise'],
+    '&': [sprite('blue-surprise'), solid(), scale(0.5), 'mushroom-surprise'],
+    'x': [sprite('blue-steel'), solid(), scale(0.5)],
+
   }
 
   const gameLevel = addLevel(maps[level], levelCfg)
@@ -243,22 +239,24 @@ scene("game", ({ level, score, selectedMario }) => {
         return isBig
       },
       smallify() {
-        this.scale = vec2(1)
+        this.scale = vec2(0.75)
         CURRENT_JUMP_FORCE = JUMP_FORCE
         isBig = false
       },
       biggify() {
-        this.scale = vec2(1.5)
+        this.scale = vec2(1)
         isBig = true
       }
     }
   }
+
   const player = add([
     sprite(selectedMario), solid(),
-    pos(30, 250), // Update the y-coordinate value
+    pos(30, 150),
     body(),
     big(),
-    origin('botleft')
+    scale(0.75)
+    // origin('botleft')
   ]);
 
   action('mushroom', (m) => {
@@ -294,14 +292,25 @@ scene("game", ({ level, score, selectedMario }) => {
     scoreLabel.text = scoreLabel.value
   })
 
-  action('enemy', (d) => {
-    d.move(-ENEMY_SPEED, 0)
+  action('enemy', (enemy) => {
+    if (Math.abs(player.pos.x - enemy.pos.x) <= 500) {
+      enemy.move(enemy.speed, 0)
+      // enemy.collides('pipe', (pipe) => {
+      //   enemy.speed *= -1
+      // })
+      // enemy.collides('enemy', () => {
+      //   enemy.speed *= -1
+      // })
+    }
+    if (enemy.pos.y > 350)
+      destroy(enemy)
   })
 
+
   player.collides('enemy', (enemy) => {
-    if (enemy.pos.y >= player.pos.y) {
+    if (enemy.pos.y > player.pos.y + 15) {
       destroy(enemy)
-      player.jump(100)
+      player.jump(150)
       scoreLabel.value++
       scoreLabel.text = scoreLabel.value
     } else {
@@ -365,6 +374,5 @@ scene('lose', ({ score }) => {
     restart();
   });
 });
-
 
 start("startScreen");
