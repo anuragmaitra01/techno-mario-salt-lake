@@ -239,12 +239,12 @@ scene("game", ({ level, score, selectedMario }) => {
         return isBig
       },
       smallify() {
-        this.scale = vec2(0.5)
+        this.scale = vec2(0.75)
         CURRENT_JUMP_FORCE = JUMP_FORCE
         isBig = false
       },
       biggify() {
-        this.scale = vec2(0.75)
+        this.scale = vec2(1)
         isBig = true
       }
     }
@@ -255,7 +255,7 @@ scene("game", ({ level, score, selectedMario }) => {
     pos(30, 250),
     body(),
     big(),
-    scale(0.5)
+    scale(0.75)
     // origin('botleft')
   ]);
 
