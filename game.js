@@ -66,7 +66,8 @@ scene('startScreen', () => {
     'of a Techno Main Salt Lake student like never before.',
     'Remember, the key to success in this game is to be as sarcastic and funny as possible,',
     'just like your favorite memes that keep you going through those boring lectures.',
-    'Let the fun begin!'
+    'Let the fun begin!',
+    'CONTRIBUTIONS: Anurag Maitra - Game Engine, Namrata Sanyal - Frontend, Nilesh Sengupta - Game Engine'
     ];
     
     textLines.forEach((line, index) => {
