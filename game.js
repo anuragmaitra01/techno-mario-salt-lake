@@ -252,7 +252,7 @@ scene("game", ({ level, score, selectedMario }) => {
 
   const player = add([
     sprite(selectedMario), solid(),
-    pos(30, 150),
+    pos(30, 250),
     body(),
     big(),
     scale(0.5)
