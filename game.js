@@ -66,8 +66,7 @@ scene('startScreen', () => {
     'of a Techno Main Salt Lake student like never before.',
     'Remember, the key to success in this game is to be as sarcastic and funny as possible,',
     'just like your favorite memes that keep you going through those boring lectures.',
-    'Let the fun begin!',
-    'CONTRIBUTIONS- Anurag Maitra: Game Mechanics, Namrata Sanyal: Frontend, Nilesh Sengupta: Game Mechanics' 
+    'Let the fun begin!'
   ];
 
   textLines.forEach((line, index) => {
@@ -217,14 +216,14 @@ scene("game", ({ level, score, selectedMario }) => {
 
   const gameLevel = addLevel(maps[level], levelCfg)
 
-  const scoreLabel = add([
-    text(score),
-    pos(30, 6),
-    layer('ui'),
-    {
-      value: score,
-    }
-  ])
+  // const scoreLabel = add([
+  //   text(score),
+  //   pos(30, 6),
+  //   layer('ui'),
+  //   {
+  //     value: score,
+  //   }
+  // ])
 
   add([text('level ' + parseInt(level + 1)), pos(40, 6)])
 
@@ -257,7 +256,6 @@ scene("game", ({ level, score, selectedMario }) => {
     body(),
     big(),
     scale(0.75)
-    // origin('botleft')
   ]);
 
   action('mushroom', (m) => {
@@ -277,8 +275,8 @@ scene("game", ({ level, score, selectedMario }) => {
     }
     if (obj.is('brick') && player.isBig()) {
       destroy(obj)
-      player.jump(-100)
-      scoreLabel.value += 0.5
+      // player.jump(-100)
+      // scoreLabel.value += 0.5
     }
   })
 
@@ -289,50 +287,46 @@ scene("game", ({ level, score, selectedMario }) => {
 
   player.collides('coin', (c) => {
     destroy(c)
-    scoreLabel.value++
-    scoreLabel.text = scoreLabel.value
+    score++
+    // scoreLabel.value++
+    // scoreLabel.text = scoreLabel.value
   })
 
   action('enemy', (enemy) => {
     if (Math.abs(player.pos.x - enemy.pos.x) <= 500) {
       enemy.move(enemy.speed, 0)
-      // enemy.collides('pipe', (pipe) => {
-      //   enemy.speed *= -1
-      // })
-      // enemy.collides('enemy', () => {
-      //   enemy.speed *= -1
-      // })
     }
-    if (enemy.pos.y > 350)
-      destroy(enemy)
+    // if (enemy.pos.y > 350)
+    //   destroy(enemy)
   })
 
 
   player.collides('enemy', (enemy) => {
     if (enemy.pos.y > player.pos.y + 15) {
       destroy(enemy)
-      player.jump(150)
-      scoreLabel.value++
-      scoreLabel.text = scoreLabel.value
+      // player.jump(150)
+      // scoreLabel.value += 2
+      // scoreLabel.text = scoreLabel.value
+      score += 2
     } else {
       if (player.isBig())
         player.smallify()
       else
-        go('lose', { score: scoreLabel.value })
+        go('lose', { score })
     }
   })
 
   player.action(() => {
-    camPos(player.pos.add(0, -0))
+    camPos(player.pos)
     if (player.pos.y > 1000)
-      go('lose', { score: scoreLabel.value })
+      go('lose', { score })
   })
 
   player.collides('exit-pipe', () => {
     keyPress('down', () => {
       go('game', {
         level: (level + 1) % maps.length,
-        score: scoreLabel.value,
+        score,
         selectedMario: selectedMario
       })
     })
